@@ -1,7 +1,11 @@
 package guru.springframework.sfgdependencyinjection.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
 import guru.springframework.sfgdependencyinjection.services.GreetingService;
 
+@Controller
 public class SetterInjectedController {
 
 	
@@ -10,6 +14,7 @@ public class SetterInjectedController {
 	 */
 	private GreetingService greetingService;
 
+	@Autowired
 	public void setGreetingService(GreetingService greetingService) {
 		this.greetingService = greetingService;
 	}
