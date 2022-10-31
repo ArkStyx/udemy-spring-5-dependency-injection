@@ -16,10 +16,10 @@ public class SfgDependencyInjectionApplication {
 		
 		ApplicationContext ctx = SpringApplication.run(SfgDependencyInjectionApplication.class, args);
 		
+		System.out.println("----- Primary Bean Controller");
 		/* Le Contexte Spring cree une instance de MyController  - Donc pas besoin de new */
 		MyController myController = (MyController) ctx.getBean("myController");
-		String greetings = myController.sayHello();
-		System.out.println("greetings : " + greetings);
+		System.out.println(myController.sayHello());
 		
 		System.out.println("----- Property Injected Controller");
 		PropertyInjectedController propertyInjectedController = (PropertyInjectedController) ctx.getBean("propertyInjectedController");
