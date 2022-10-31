@@ -4,10 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import guru.springframework.sfgdependencyinjection.controllers.ConstructorInjectedController;
 import guru.springframework.sfgdependencyinjection.controllers.MyController;
-import guru.springframework.sfgdependencyinjection.controllers.PropertyInjectedController;
-import guru.springframework.sfgdependencyinjection.controllers.SetterInjectedController;
+import guru.springframework.sfgdependencyinjection.controllers.profiles.I18nController;
+import guru.springframework.sfgdependencyinjection.controllers.types.ConstructorInjectedController;
+import guru.springframework.sfgdependencyinjection.controllers.types.PropertyInjectedController;
+import guru.springframework.sfgdependencyinjection.controllers.types.SetterInjectedController;
 
 @SpringBootApplication
 public class SfgDependencyInjectionApplication {
@@ -15,6 +16,10 @@ public class SfgDependencyInjectionApplication {
 	public static void main(String[] args) {
 		
 		ApplicationContext ctx = SpringApplication.run(SfgDependencyInjectionApplication.class, args);
+		
+		System.out.println("----- Profile Controller");
+		I18nController i18nController = (I18nController) ctx.getBean("i18nController");
+		System.out.println(i18nController.sayHello());
 		
 		System.out.println("----- Primary Bean Controller");
 		/* Le Contexte Spring cree une instance de MyController  - Donc pas besoin de new */
