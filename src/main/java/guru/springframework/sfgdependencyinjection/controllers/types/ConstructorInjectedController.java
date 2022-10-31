@@ -1,4 +1,4 @@
-package guru.springframework.sfgdependencyinjection.controllers;
+package guru.springframework.sfgdependencyinjection.controllers.types;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;

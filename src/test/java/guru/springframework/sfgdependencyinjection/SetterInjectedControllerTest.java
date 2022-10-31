@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import guru.springframework.sfgdependencyinjection.controllers.SetterInjectedController;
+import guru.springframework.sfgdependencyinjection.controllers.types.SetterInjectedController;
 import guru.springframework.sfgdependencyinjection.services.GreetingServiceImpl;
 
 @SpringBootTest
