@@ -3,7 +3,7 @@ package guru.springframework.sfgdependencyinjection.controllers.pets;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 
-import guru.springframework.sfgdependencyinjection.services.pets.PetService;
+import com.springframework.pets.PetService;
 
 /**
  * Created by jt on 12/28/19.
