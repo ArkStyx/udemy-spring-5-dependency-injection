@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
+import guru.springframework.sfgdependencyinjection.repositories.EnglishGreetingRepository;
+import guru.springframework.sfgdependencyinjection.repositories.EnglishGreetingRepositoryImpl;
 import guru.springframework.sfgdependencyinjection.services.primary.PrimaryGreetingServiceImpl;
 import guru.springframework.sfgdependencyinjection.services.profiles.I18nEnglishGreetingService;
 import guru.springframework.sfgdependencyinjection.services.profiles.I18nSpanishGreetingService;
@@ -47,13 +49,18 @@ public class GreetingServiceConfig {
 	
 	/* ---------------------------------------------------------------------------------------------------- */
 	
+	@Bean
+	EnglishGreetingRepository englishGreetingRepository() {
+		return new EnglishGreetingRepositoryImpl();
+	}
+	
 	/*
 	 * Ici on utilise @Bean("i18nService"), ce qui correspond à l'annotation @Service("i18nService")
 	 */
 	@Profile("EN")
 	@Bean("i18nService")
-	I18nEnglishGreetingService i18nEnglishGreetingService() {
-		return new I18nEnglishGreetingService();
+	I18nEnglishGreetingService i18nEnglishGreetingService(EnglishGreetingRepository englishGreetingRepository) {
+		return new I18nEnglishGreetingService(englishGreetingRepository);
 	}
 	
 	@Profile({"ES", "default"})
