@@ -48,12 +48,11 @@ public class GreetingServiceConfig {
 	/* ---------------------------------------------------------------------------------------------------- */
 	
 	/*
-	 * Ici le service n'est pas nommé "i18nEnglishGreetingService" (le nom de la classe sans la 1ere lettre en capitale).
-	 * Il est nommé "i18nService", ce qui correspond à l'annotation @Service("i18nService")
+	 * Ici on utilise @Bean("i18nService"), ce qui correspond à l'annotation @Service("i18nService")
 	 */
 	@Profile("EN")
-	@Bean()
-	I18nEnglishGreetingService i18nService() {
+	@Bean("i18nService")
+	I18nEnglishGreetingService i18nEnglishGreetingService() {
 		return new I18nEnglishGreetingService();
 	}
 	
@@ -65,11 +64,7 @@ public class GreetingServiceConfig {
 	
 	
 	
-//	@Profile("EN")
-//	@Bean("i18nService")
-//	I18nEnglishGreetingService i18nEnglishGreetingService() {
-//		return new I18nEnglishGreetingService();
-//	}
+
 
 	
 	
