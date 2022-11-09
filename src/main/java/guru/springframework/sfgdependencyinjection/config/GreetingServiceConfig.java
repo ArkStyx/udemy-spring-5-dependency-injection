@@ -5,6 +5,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
+import com.springframework.pets.PetService;
+import com.springframework.pets.factories.PetServiceFactory;
+
 import guru.springframework.sfgdependencyinjection.repositories.EnglishGreetingRepository;
 import guru.springframework.sfgdependencyinjection.repositories.EnglishGreetingRepositoryImpl;
 import guru.springframework.sfgdependencyinjection.services.primary.PrimaryGreetingServiceImpl;
@@ -13,6 +16,7 @@ import guru.springframework.sfgdependencyinjection.services.profiles.I18nSpanish
 import guru.springframework.sfgdependencyinjection.services.types.ConstructorGreetingServiceImpl;
 import guru.springframework.sfgdependencyinjection.services.types.PropertyGreetingServiceImpl;
 import guru.springframework.sfgdependencyinjection.services.types.SetterGreetingServiceImpl;
+import guru.springframework.sfgdependencyinjection.utilities.ProfilUtilities;
 
 @Configuration
 public class GreetingServiceConfig {
@@ -69,11 +73,23 @@ public class GreetingServiceConfig {
 		return new I18nSpanishGreetingService();
 	}
 	
+	/* ---------------------------------------------------------------------------------------------------- */
 	
-	
+	@Bean
+	PetServiceFactory petServiceFactory() {
+		return new PetServiceFactory();
+	}
 
-
+	@Profile({ProfilUtilities.DOG, "default"})
+	@Bean("petService")
+	PetService dogPetService(PetServiceFactory petServiceFactory) {
+		return	petServiceFactory.getPetService(ProfilUtilities.DOG);
+	}
 	
-	
+	@Profile(ProfilUtilities.CAT)
+	@Bean("petService")
+	PetService catPetService(PetServiceFactory petServiceFactory) {
+		return petServiceFactory.getPetService(ProfilUtilities.CAT);
+	}
 	
 }
