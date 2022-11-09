@@ -10,6 +10,8 @@ import guru.springframework.sfgdependencyinjection.controllers.profiles.I18nCont
 import guru.springframework.sfgdependencyinjection.controllers.types.ConstructorInjectedController;
 import guru.springframework.sfgdependencyinjection.controllers.types.PropertyInjectedController;
 import guru.springframework.sfgdependencyinjection.controllers.types.SetterInjectedController;
+import guru.springframework.sfgdependencyinjection.scopes.PrototypeBean;
+import guru.springframework.sfgdependencyinjection.scopes.SingletonBean;
 
 @SpringBootApplication
 public class SfgDependencyInjectionApplication {
@@ -42,6 +44,17 @@ public class SfgDependencyInjectionApplication {
 		System.out.println("----- Constructor Injected Controller");
 		ConstructorInjectedController constructorInjectedController = (ConstructorInjectedController) ctx.getBean("constructorInjectedController");
 		System.out.println(constructorInjectedController.getGreeting());
+		
+		System.out.println("----- Bean Scopes");
+		SingletonBean singletonBean01 = (SingletonBean) ctx.getBean("singletonBean");
+		System.out.println(singletonBean01.getMyScope());
+		SingletonBean singletonBean02 = (SingletonBean) ctx.getBean("singletonBean");
+		System.out.println(singletonBean02.getMyScope());
+		
+		PrototypeBean prototypeBean01 = ctx.getBean(PrototypeBean.class);
+		System.out.println(prototypeBean01.getMyScope());
+		PrototypeBean prototypeBean02 = ctx.getBean(PrototypeBean.class);
+		System.out.println(prototypeBean02.getMyScope());
 	}
 
 }
