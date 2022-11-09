@@ -2,6 +2,7 @@ package guru.springframework.sfgdependencyinjection.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
@@ -18,6 +19,7 @@ import guru.springframework.sfgdependencyinjection.services.types.PropertyGreeti
 import guru.springframework.sfgdependencyinjection.services.types.SetterGreetingServiceImpl;
 import guru.springframework.sfgdependencyinjection.utilities.ProfilUtilities;
 
+@ImportResource("classpath:sfgdi-config.xml")
 @Configuration
 public class GreetingServiceConfig {
 
@@ -28,7 +30,7 @@ public class GreetingServiceConfig {
 	 * 
 	 * Dans le cas où le code nous appartient, nous utilisons les stereotypes Spring pour declarer nos composants
 	 */
-	@Bean
+	//@Bean		====>	DEPLACE DANS LE FICHIER sfgdi-config.xml
 	ConstructorGreetingServiceImpl constructorGreetingServiceImpl() {
 		return new ConstructorGreetingServiceImpl();
 	}
