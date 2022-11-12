@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.PropertySource;
 
 import com.springframework.pets.PetService;
 import com.springframework.pets.factories.PetServiceFactory;
@@ -22,7 +21,6 @@ import guru.springframework.sfgdependencyinjection.services.types.PropertyGreeti
 import guru.springframework.sfgdependencyinjection.services.types.SetterGreetingServiceImpl;
 import guru.springframework.sfgdependencyinjection.utilities.ProfilUtilities;
 
-@PropertySource("classpath:datasource.properties")
 @ImportResource("classpath:sfgdi-config.xml")
 @Configuration
 public class GreetingServiceConfig {
