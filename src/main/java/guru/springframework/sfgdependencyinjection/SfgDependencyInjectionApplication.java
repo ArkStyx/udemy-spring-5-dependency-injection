@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+import guru.springframework.sfgdependencyinjection.config.SfgConfiguration;
 import guru.springframework.sfgdependencyinjection.controllers.MyController;
 import guru.springframework.sfgdependencyinjection.controllers.pets.PetController;
 import guru.springframework.sfgdependencyinjection.controllers.profiles.I18nController;
@@ -69,6 +70,13 @@ public class SfgDependencyInjectionApplication {
 		System.out.println(fakeDataSource.getUserName());
 		System.out.println(fakeDataSource.getPassword());
 		System.out.println(fakeDataSource.getJdbcUrl());
+		
+		System.out.println("----- @ConfigurationProperties Settings");
+		SfgConfiguration sfgConfiguration = ctx.getBean(SfgConfiguration.class);
+		System.out.println(sfgConfiguration.getUserName());
+		System.out.println(sfgConfiguration.getPassword());
+		System.out.println(sfgConfiguration.getJdbcUrl());
+		
 	}
 
 }

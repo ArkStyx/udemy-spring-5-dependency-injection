@@ -101,18 +101,28 @@ public class GreetingServiceConfig {
 	/*
 	 * IMPORTANT : Annoter la classe avec "@PropertySource("classpath:datasource.properties")" !!!!!
 	 */
+//	@Bean
+//	FakeDataSource fakeDataSource(@Value("${guru.userName}") String userName, 
+//								@Value("${guru.password}")String password, 
+//								@Value("${guru.jdbcUrl}")String jdbcUrl) {
+//		FakeDataSource fakeDataSource = new FakeDataSource();
+//		fakeDataSource.setUserName(userName);
+//		fakeDataSource.setPassword(password);
+//		fakeDataSource.setJdbcUrl(jdbcUrl);
+//		return fakeDataSource;
+//	}
+	
+	/*
+	 * SfgConfiguration etait un @Bean de type @Configuration, on peut l'utiliser directement ici
+	 */
 	@Bean
-	FakeDataSource fakeDataSource(@Value("${guru.userName}") String userName, 
-								@Value("${guru.password}")String password, 
-								@Value("${guru.jdbcUrl}")String jdbcUrl) {
+	FakeDataSource fakeDataSource(SfgConfiguration sfgConfiguration) {
 		FakeDataSource fakeDataSource = new FakeDataSource();
-		fakeDataSource.setUserName(userName);
-		fakeDataSource.setPassword(password);
-		fakeDataSource.setJdbcUrl(jdbcUrl);
+		fakeDataSource.setUserName(sfgConfiguration.getUserName());
+		fakeDataSource.setPassword(sfgConfiguration.getPassword());
+		fakeDataSource.setJdbcUrl(sfgConfiguration.getJdbcUrl());
 		return fakeDataSource;
 	}
-	
-	
 	
 	
 }
