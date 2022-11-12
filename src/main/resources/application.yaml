@@ -1,8 +1,21 @@
 spring:
-  profiles:
-    active: EN, DOG, dev
+    profiles:
+      active: 
+        - EN
+        - DOG
+        - prod
     
 guru:
-  userName: applicationYamlDBUser
-  password: applicationYamlPassword
-  jdbcUrl:  applicationYamlURL
+    userName: yamlDBUser
+    password: yamlPassword
+    jdbcUrl:  yamlURL
+
+---
+spring:
+    profile:  prof
+
+guru:
+    userName: yamlProdDBUser
+    password: yamlProdPassword
+    jdbcUrl:  yamlProdURL
+
