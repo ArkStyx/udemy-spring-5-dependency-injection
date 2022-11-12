@@ -1,14 +1,17 @@
 package guru.springframework.sfgdependencyinjection.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.PropertySource;
 
 import com.springframework.pets.PetService;
 import com.springframework.pets.factories.PetServiceFactory;
 
+import guru.springframework.sfgdependencyinjection.datasource.FakeDataSource;
 import guru.springframework.sfgdependencyinjection.repositories.EnglishGreetingRepository;
 import guru.springframework.sfgdependencyinjection.repositories.EnglishGreetingRepositoryImpl;
 import guru.springframework.sfgdependencyinjection.services.primary.PrimaryGreetingServiceImpl;
@@ -19,6 +22,7 @@ import guru.springframework.sfgdependencyinjection.services.types.PropertyGreeti
 import guru.springframework.sfgdependencyinjection.services.types.SetterGreetingServiceImpl;
 import guru.springframework.sfgdependencyinjection.utilities.ProfilUtilities;
 
+@PropertySource("classpath:datasource.properties")
 @ImportResource("classpath:sfgdi-config.xml")
 @Configuration
 public class GreetingServiceConfig {
@@ -93,5 +97,24 @@ public class GreetingServiceConfig {
 	PetService catPetService(PetServiceFactory petServiceFactory) {
 		return petServiceFactory.getPetService(ProfilUtilities.CAT);
 	}
+	
+	/* ---------------------------------------------------------------------------------------------------- */
+	
+	/*
+	 * IMPORTANT : Annoter la classe avec "@PropertySource("classpath:datasource.properties")" !!!!!
+	 */
+	@Bean
+	FakeDataSource fakeDataSource(@Value("${guru.userName}") String userName, 
+								@Value("${guru.password}")String password, 
+								@Value("${guru.jdbcUrl}")String jdbcUrl) {
+		FakeDataSource fakeDataSource = new FakeDataSource();
+		fakeDataSource.setUserName(userName);
+		fakeDataSource.setPassword(password);
+		fakeDataSource.setJdbcUrl(jdbcUrl);
+		return fakeDataSource;
+	}
+	
+	
+	
 	
 }
